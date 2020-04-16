@@ -9,10 +9,30 @@ using namespace std;
 inline void fast_scan(int &number);
 inline void fast_write(int num);
 
-
+int lowerCase(char c) {
+    if (c >= 'A' && c <= 'Z')
+        return (int) c + 32;
+    return c;
+}
 
 void solve() {
-
+    string string1;
+    string string2;
+    getline(cin, string1);
+    getline(cin, string2);
+    for (int i = 0; i < string1.size(); ++i) {
+        int s1 = lowerCase(string1.at(i));
+        int s2 = lowerCase(string2.at(i));
+        if (s1 != s2) {
+            if (s1 > s2) {
+                cout << 1;
+            } else {
+                cout << -1;
+            }
+            return;
+        }
+    }
+    cout << 0;
 }
 
 int main() {
