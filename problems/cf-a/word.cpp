@@ -3,7 +3,6 @@
 using namespace std;
 
 #define ll long long
-#define REP(i, size) for (int i = 0; i < size; ++i)
 #define fs(x) fast_scan(x)
 #define fsw(x, s) fast_scan_word(x, s)
 #define fsl(x, s) fast_scan_line(x, s)
@@ -15,10 +14,28 @@ size_t fast_scan_word(char *chars, size_t size);
 inline void fast_write(int num);
 inline void fast_write(char *str);
 
-
+char str[100];
+size_t u = 0;
+size_t l = 0;
 
 void solve() {
-
+    fsw(str, 100);
+    for (int i = 0; str[i]; i++) {
+        if (islower(str[i])) {
+            l++;
+        } else {
+            u++;
+        }
+    }
+    if (l >= u) {
+        for (int i = 0; str[i]; i++) {
+            cout << (char) tolower(str[i]);
+        }
+    } else {
+        for (int i = 0; str[i]; i++) {
+            cout << (char) toupper(str[i]);
+        }
+    }
 }
 
 int main() {

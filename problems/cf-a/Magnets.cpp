@@ -5,20 +5,35 @@ using namespace std;
 #define ll long long
 #define REP(i, size) for (int i = 0; i < size; ++i)
 #define fs(x) fast_scan(x)
-#define fsw(x, s) fast_scan_word(x, s)
-#define fsl(x, s) fast_scan_line(x, s)
+#define fsw(x, size) fast_scan_word(x, s)
+#define fsl(x, size) fast_scan_line(x, s)
 #define fw(x) fast_write(x)
 
 inline void fast_scan(int &number);
+
 size_t fast_scan_line(char *chars, size_t size);
+
 size_t fast_scan_word(char *chars, size_t size);
+
 inline void fast_write(int num);
+
 inline void fast_write(char *str);
 
-
+int n;
+int temp1, temp2;
+int res = 1;
 
 void solve() {
-
+    fs(n);
+    fs(temp1);
+    REP(i, n - 1) {
+        fs(temp2);
+        if (temp1 != temp2) {
+            res++;
+        }
+        temp1 = temp2;
+    }
+    fw(res);
 }
 
 int main() {

@@ -3,7 +3,6 @@
 using namespace std;
 
 #define ll long long
-#define REP(i, size) for (int i = 0; i < size; ++i)
 #define fs(x) fast_scan(x)
 #define fsw(x, s) fast_scan_word(x, s)
 #define fsl(x, s) fast_scan_line(x, s)
@@ -15,10 +14,18 @@ size_t fast_scan_word(char *chars, size_t size);
 inline void fast_write(int num);
 inline void fast_write(char *str);
 
-
+char *str;
+size_t count = 0;
 
 void solve() {
-
+    str = new char[100];
+    int size = fsw(str, 100);
+    set<char> myset(str, str+size);
+    if (myset.size() & 1) {
+        cout << "IGNORE HIM!\n";
+    } else {
+        cout << "CHAT WITH HER!\n";
+    }
 }
 
 int main() {
