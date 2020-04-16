@@ -1,2 +1,2 @@
 
-add_executable(sandbox problems/sandbox.cpp)
+add_executable(VanyaAndFence problems/VanyaAndFence.cpp)

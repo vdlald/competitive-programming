@@ -7,8 +7,19 @@ using namespace std;
 inline void fast_scan(int &number);
 inline void fast_write(int num);
 
-void solve() {
+int n, k;
+int temp, result = 0;
 
+// https://www.spoj.com/problems/INTEST/
+inline void solve() {
+    fast_scan(n);
+    fast_scan(k);
+    for (int i = 0; i < n; ++i) {
+        fast_scan(temp);
+        if (temp % k == 0)
+            result++;
+    }
+    fast_write(result);
 }
 
 int main() {

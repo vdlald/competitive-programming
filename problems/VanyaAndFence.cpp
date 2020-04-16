@@ -7,8 +7,21 @@ using namespace std;
 inline void fast_scan(int &number);
 inline void fast_write(int num);
 
-void solve() {
+int n, h;
+int temp, result;
 
+// https://codeforces.com/contest/677/problem/A
+void solve() {
+    fast_scan(n);
+    fast_scan(h);
+
+    for (int i = 0; i < n; ++i) {
+        fast_scan(temp);
+        if (temp > h)
+            result++;
+        result++;
+    }
+    fast_write(result);
 }
 
 int main() {
@@ -28,18 +41,18 @@ inline void fast_scan(int &number) {
     number = 0;
 
     // extract current character from buffer
-    c = getchar_unlocked();
+    c = getchar();
     if (c == '-') {
         // number is negative
         negative = true;
 
         // extract the next character from the buffer
-        c = getchar_unlocked();
+        c = getchar();
     }
 
     // Keep on extracting characters if they are integers
     // i.e ASCII Value lies from '0'(48) to '9' (57)
-    for (; (c > 47 && c < 58); c = getchar_unlocked())
+    for (; (c > 47 && c < 58); c = getchar())
         number = number * 10 + c - 48;
 
     // if scanned input has a negative sign, negate the
@@ -52,8 +65,8 @@ inline void fast_write(int num) {
     int N = num, rev, count = 0;
     rev = N;
     if (N == 0) {
-        putchar_unlocked('0');
-        putchar_unlocked('\n');
+        putchar('0');
+        putchar('\n');
         return;
     }
     while ((rev % 10) == 0) {
@@ -66,8 +79,8 @@ inline void fast_write(int num) {
         N /= 10;
     }  //store reverse of N in rev
     while (rev != 0) {
-        putchar_unlocked(rev % 10 + '0');
+        putchar(rev % 10 + '0');
         rev /= 10;
     }
-    while (count--) putchar_unlocked('0');
+    while (count--) putchar('0');
 }
