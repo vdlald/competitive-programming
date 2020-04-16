@@ -10,16 +10,58 @@ using namespace std;
 #define fw(x) fast_write(x)
 
 inline void fast_scan(int &number);
+
 size_t fast_scan_line(char *chars, size_t size);
+
 size_t fast_scan_word(char *chars, size_t size);
+
 inline void fast_write(int num);
+
 inline void fast_write(char *str);
+
 inline void fast_write(char c);
 
-
+int n;
+int s = 0, d = 0;
+int arr[1001];
 
 void solve() {
-
+    fs(n);
+    REP(i, n) {
+        fs(arr[i]);
+    }
+    bool turn = true; // if true - s
+    int r = n - 1;
+    int l = 0;
+    while (l != r) {
+        if (turn) {
+            if (arr[l] > arr[r]) {
+                s += arr[l];
+                l++;
+            } else {
+                s += arr[r];
+                r--;
+            }
+            turn = false;
+        } else {
+            if (arr[l] > arr[r]) {
+                d += arr[l];
+                l++;
+            } else {
+                d += arr[r];
+                r--;
+            }
+            turn = true;
+        }
+    }
+    if (n & 1) {
+        s += arr[l];
+    } else {
+        d += arr[l];
+    }
+    fw(s);
+    fw(' ');
+    fw(d);
 }
 
 int main() {
