@@ -17,14 +17,28 @@ size_t fast_scan_word(char *chars, size_t size);
 inline void fast_write(int num);
 inline void fast_write(char *str);
 
-
+int n;
+int teams[31][2];
 
 void read() {
-
+    fs(n);
+    REP(i, n) {
+        fs(teams[i][0]);
+        fs(teams[i][1]);
+    }
 }
 
 void solve() {
-
+    int r = 0;
+    REP(i, n) {
+        REP(j, n) {
+            if (i != j) {
+                if (teams[i][0] == teams[j][1])
+                    r++;
+            }
+        }
+    }
+    fw(r);
 }
 
 int main() {

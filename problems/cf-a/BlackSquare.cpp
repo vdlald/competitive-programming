@@ -10,21 +10,38 @@ using namespace std;
 #define fsl(x, size) fast_scan_line(x, s)
 #define fw(x) fast_write(x)
 
-template<typename T> void fast_scan(T &number);
+inline void fast_scan(int &number);
 inline void fast_scan(int *nums, size_t size);
 size_t fast_scan_line(char *chars, size_t size);
 size_t fast_scan_word(char *chars, size_t size);
 inline void fast_write(int num);
 inline void fast_write(char *str);
+inline void fast_write(char c);
 
-
+ll a[4];
+string str;
 
 void read() {
-
+    for (long long & i : a) {
+        cin >> i;
+    }
+    cin >> str;
 }
 
 void solve() {
-
+    ll res = 0;
+    for (char &c : str) {
+        if (c == '1') {
+            res += a[0];
+        } else if (c == '2') {
+            res += a[1];
+        } else if (c == '3') {
+            res += a[2];
+        } else if (c == '4') {
+            res += a[3];
+        }
+    }
+    cout << res;
 }
 
 int main() {
@@ -57,8 +74,7 @@ size_t fast_scan_line(char *chars, size_t size) {
     }
 }
 
-template<typename T>
-void fast_scan(T &number) {
+inline void fast_scan(int &number) {
     //variable to indicate sign of input number
     bool negative = false;
     int c;
@@ -122,4 +138,8 @@ inline void fast_write(int num) {
 inline void fast_write(char *str) {
     for (int i = 0; str[i]; i++)
         putchar(str[i]);
+}
+
+inline void fast_write(char c) {
+    putchar(c);
 }

@@ -6,8 +6,8 @@ using namespace std;
 #define REP(i, size) for (int i = 0; i < size; ++i)
 #define fs(x) fast_scan(x)
 #define fsa(a, size) fast_scan(a, size)
-#define fsw(x, size) fast_scan_word(x, s)
-#define fsl(x, size) fast_scan_line(x, s)
+#define fsw(x, size) fast_scan_word(x, size)
+#define fsl(x, size) fast_scan_line(x, size)
 #define fw(x) fast_write(x)
 
 template<typename T> void fast_scan(T &number);
@@ -17,14 +17,27 @@ size_t fast_scan_word(char *chars, size_t size);
 inline void fast_write(int num);
 inline void fast_write(char *str);
 
-
+char *str;
+size_t size;
 
 void read() {
-
+    str = new char[101];
+    size = fsw(str, 101);
 }
 
 void solve() {
-
+    int res = 0;
+    int last = 0;
+    for (int i = 0; i < size; ++i) {
+        int c = str[i] - 97;
+        int step = abs(last - c);
+        if (step > 13)
+            res += 26 - step;
+        else
+            res += step;
+        last = c;
+    }
+    fw(res);
 }
 
 int main() {

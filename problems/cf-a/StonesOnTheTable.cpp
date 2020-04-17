@@ -5,26 +5,34 @@ using namespace std;
 #define ll long long
 #define REP(i, size) for (int i = 0; i < size; ++i)
 #define fs(x) fast_scan(x)
-#define fsa(a, size) fast_scan(a, size)
-#define fsw(x, size) fast_scan_word(x, s)
-#define fsl(x, size) fast_scan_line(x, s)
+#define fsw(x, s) fast_scan_word(x, s)
+#define fsl(x, s) fast_scan_line(x, s)
 #define fw(x) fast_write(x)
 
-template<typename T> void fast_scan(T &number);
-inline void fast_scan(int *nums, size_t size);
+inline void fast_scan(int &number);
 size_t fast_scan_line(char *chars, size_t size);
 size_t fast_scan_word(char *chars, size_t size);
 inline void fast_write(int num);
 inline void fast_write(char *str);
+inline void fast_write(char c);
 
-
+int n;
+char *colors;
 
 void read() {
-
+    fs(n);
+    colors = new char[n];
+    fsw(colors, n);
 }
 
 void solve() {
-
+    int res = 0;
+    for (int i = 0; i < n - 1; i++) {
+        if (colors[i] == colors[i+1]) {
+            res++;
+        }
+    }
+    fw(res);
 }
 
 int main() {
@@ -57,8 +65,7 @@ size_t fast_scan_line(char *chars, size_t size) {
     }
 }
 
-template<typename T>
-void fast_scan(T &number) {
+inline void fast_scan(int &number) {
     //variable to indicate sign of input number
     bool negative = false;
     int c;
@@ -86,11 +93,6 @@ void fast_scan(T &number) {
         number *= -1;
 }
 
-inline void fast_scan(int *nums, size_t size) {
-    for (size_t i = 0; i < size; ++i)
-        fs(nums[i]);
-}
-
 inline void fast_write(int num) {
     int N = num, rev, count = 0;
     rev = N;
@@ -98,10 +100,6 @@ inline void fast_write(int num) {
         putchar('0');
         putchar('\n');
         return;
-    }
-    if (N < 0) {
-        putchar('-');
-        N *= -1;
     }
     while ((rev % 10) == 0) {
         count++;
@@ -122,4 +120,8 @@ inline void fast_write(int num) {
 inline void fast_write(char *str) {
     for (int i = 0; str[i]; i++)
         putchar(str[i]);
+}
+
+inline void fast_write(char c) {
+    putchar(c);
 }
