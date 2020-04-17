@@ -18,14 +18,16 @@ inline void fast_write(int num);
 inline void fast_write(char *str);
 int comp_double(double a, double b);
 
-
+int y, w;
 
 void read() {
-
+    fs(y);
+    fs(w);
 }
 
 void solve() {
-
+    char rolls[6][4] = {"1/6", "1/3", "1/2", "2/3", "5/6", "1/1"};
+    fw(rolls[6 - max(y, w)]);
 }
 
 int main() {

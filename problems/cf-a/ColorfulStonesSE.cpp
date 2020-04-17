@@ -9,6 +9,8 @@ using namespace std;
 #define fsw(x, size) fast_scan_word(x, size)
 #define fsl(x, size) fast_scan_line(x, size)
 #define fw(x) fast_write(x)
+#define nca(size) new char[size]
+#define nia(size) new int[size]
 
 template<typename T> void fast_scan(T &number);
 inline void fast_scan(int *nums, size_t size);
@@ -18,14 +20,22 @@ inline void fast_write(int num);
 inline void fast_write(char *str);
 int comp_double(double a, double b);
 
-
+char s[51];
+char t[51];
 
 void read() {
-
+    fsw(s, 51);
+    fsw(t, 51);
 }
 
 void solve() {
-
+    int p = 1;
+    REP(i, 51) {
+        if (s[p-1] == t[i]) {
+            p++;
+        }
+    }
+    fw(p);
 }
 
 int main() {
