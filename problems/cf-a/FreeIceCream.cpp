@@ -10,14 +10,28 @@ int comp_double(double a, double b);
 
 vector<string> string_split(char *str, char *delimiter);
 
-
+ll x;
+int n;
 
 void read() {
-
+    cin >> n >> x;
 }
 
 void solve() {
-
+    unsigned ll g = 0;
+    char c;
+    ll d;
+    FORI(n) {
+        cin >> c >> d;
+        if (c == '+') {
+            x += d;
+        } else if (d <= x){
+            x -= d;
+        } else {
+            g++;
+        }
+    }
+    cout << x << ' ' << g << '\n';
 }
 
 int main() {
