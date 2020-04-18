@@ -17,23 +17,32 @@ size_t fast_scan_word(char *chars, size_t size);
 inline void fast_write(int num);
 inline void fast_write(char *str);
 int comp_double(double a, double b);
-vector<string> string_split(char *str, char *delimiter);
 
-
+int n, t, k, d;
 
 void read() {
-
+    fs(n);
+    fs(t);
+    fs(k);
+    fs(d);
 }
 
 void solve() {
-
+    int x=n-d/t*k;
+    if(x>k) {
+        fw("YES");
+    } else {
+        fw("NO");
+    }
 }
 
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
+
     read();
     solve();
+
     return 0;
 }
 
@@ -129,27 +138,4 @@ int comp_double(double a, double b) {
     if (fabs(a - b) <= 1e-10)
         return 0;
     return a < b ? -1 : 1;
-}
-
-vector<string> string_split(char *str, char *delimiter) {
-    vector<string> tokens;
-    char *token = strtok(str, delimiter);
-
-    while (token != nullptr) {
-        tokens.emplace_back(token);
-        token = strtok(nullptr, delimiter);
-    }
-    return tokens;
-}
-
-vector<string> split(const string& s, char delimiter)
-{
-    vector<string> tokens;
-    string token;
-    istringstream tokenStream(s);
-    while (getline(tokenStream, token, delimiter))
-    {
-        tokens.push_back(token);
-    }
-    return tokens;
 }

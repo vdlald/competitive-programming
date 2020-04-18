@@ -19,21 +19,28 @@ inline void fast_write(char *str);
 int comp_double(double a, double b);
 vector<string> string_split(char *str, char *delimiter);
 
-
+char str[1000];
+size_t size;
 
 void read() {
-
+    size = fsl(str, 1000);
 }
 
 void solve() {
-
+    str[0] = ' ';
+    str[size-1] = ' ';
+    auto strs = string_split(str, ", ");
+    set<string> s(strs.begin(), strs.end());
+    fw(s.size());
 }
 
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
+
     read();
     solve();
+
     return 0;
 }
 
@@ -138,18 +145,6 @@ vector<string> string_split(char *str, char *delimiter) {
     while (token != nullptr) {
         tokens.emplace_back(token);
         token = strtok(nullptr, delimiter);
-    }
-    return tokens;
-}
-
-vector<string> split(const string& s, char delimiter)
-{
-    vector<string> tokens;
-    string token;
-    istringstream tokenStream(s);
-    while (getline(tokenStream, token, delimiter))
-    {
-        tokens.push_back(token);
     }
     return tokens;
 }
