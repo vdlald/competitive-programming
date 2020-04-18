@@ -18,14 +18,35 @@ inline void fast_write(int num);
 inline void fast_write(char *str);
 int comp_double(double a, double b);
 
-
+int n, m;
+int wires[101];
+pair<int, int> *birds;
 
 void read() {
-
+    fs(n);
+    fsa(wires, n);
+    fs(m);
+    birds = new pair<int, int>[m];
+    REP(i, m) {
+        cin >> birds[i].first >> birds[i].second;
+    }
 }
 
 void solve() {
+    REP(i, m) {
+        int wire = birds[i].first - 1;
+        int bird = birds[i].second;
 
+        if (wire != 0)
+            wires[wire-1] += bird-1;
+        if (wire != n-1)
+            wires[wire+1] += wires[wire] - bird;
+
+        wires[wire]= 0;
+    }
+    REP(i, n) {
+        cout << wires[i] << '\n';
+    }
 }
 
 int main() {

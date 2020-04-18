@@ -11,21 +11,39 @@ using namespace std;
 #define fw(x) fast_write(x)
 
 template<typename T> void fast_scan(T &number);
-template<typename T> inline void fast_scan(T *nums, size_t size);
+inline void fast_scan(int *nums, size_t size);
 size_t fast_scan_line(char *chars, size_t size);
 size_t fast_scan_word(char *chars, size_t size);
 inline void fast_write(int num);
 inline void fast_write(char *str);
 int comp_double(double a, double b);
 
-
+int n;
+int a[1000001];
+int b;
+int d;
 
 void read() {
-
+    fs(n);
+    fs(b);
+    fs(d);
+    fsa(a, n);
 }
 
 void solve() {
-
+    int r = 0;
+    int temp = 0;
+    REP(i, n) {
+        int o = a[i];
+        if (o > b)
+            continue;
+        temp += o;
+        if (temp > d) {
+            r++;
+            temp = 0;
+        }
+    }
+    fw(r);
 }
 
 int main() {
@@ -87,8 +105,7 @@ void fast_scan(T &number) {
         number *= -1;
 }
 
-template<typename T>
-inline void fast_scan(T *nums, size_t size) {
+inline void fast_scan(int *nums, size_t size) {
     for (size_t i = 0; i < size; ++i)
         fs(nums[i]);
 }
