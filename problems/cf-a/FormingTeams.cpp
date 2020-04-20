@@ -24,7 +24,7 @@ inline void fast_write(char *str);
 int comp_double(double a, double b);
 vector<string> string_split(char *str, char *delimiter);
 
-
+set<tri>
 
 void read() {
 

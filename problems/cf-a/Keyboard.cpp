@@ -24,14 +24,45 @@ inline void fast_write(char *str);
 int comp_double(double a, double b);
 vector<string> string_split(char *str, char *delimiter);
 
-
+char m;
+char str[101];
+std::size_t size;
 
 void read() {
-
+    m = (char) getchar();
+    getchar();
+    size = fsw(str, 101);
 }
 
 void solve() {
-
+    char N1[] = "qwertyuiop";
+    char N2[] = "asdfghjkl;";
+    char N3[] = "zxcvbnm,./";
+    char R1[] = "qqwertyuio";
+    char R2[] = "aasdfghjkl";
+    char R3[] = "zzxcvbnm,.";
+    char L1[] = "wertyuiopp";
+    char L2[] = "sdfghjkl;;";
+    char L3[] = "xcvbnm,.//";
+    map<char, char> L;
+    map<char, char> R;
+    for (int i = 0; i < 10; ++i) {
+        L.insert(make_pair(N1[i], L1[i]));
+        L.insert(make_pair(N2[i], L2[i]));
+        L.insert(make_pair(N3[i], L3[i]));
+        R.insert(make_pair(N1[i], R1[i]));
+        R.insert(make_pair(N2[i], R2[i]));
+        R.insert(make_pair(N3[i], R3[i]));
+    }
+    if (m == 'R') {
+        for (int i = 0; i < size; ++i) {
+            cout << R[str[i]];
+        }
+    } else {
+        for (int i = 0; i < size; ++i) {
+            cout << L[str[i]];
+        }
+    }
 }
 
 int main() {

@@ -24,14 +24,36 @@ inline void fast_write(char *str);
 int comp_double(double a, double b);
 vector<string> string_split(char *str, char *delimiter);
 
-
+int n;
+int sn[100001];
 
 void read() {
-
+    fs(n);
+    fsa(sn, n);
 }
 
 void solve() {
-
+    int t = n;
+    set<int> s;
+    for (int i = 0; i < n; ++i) {
+        if (sn[i] == t) {
+            cout << t << ' ';
+            t--;
+            for (auto it = s.rbegin(); it != s.rend();) {
+                if (*it == t) {
+                    t--;
+                    cout << *it << ' ';
+                    s.erase(*it);
+                } else {
+                    break;
+                }
+            }
+            cout << '\n';
+        } else {
+            s.insert(sn[i]);
+            cout << '\n';
+        }
+    }
 }
 
 int main() {

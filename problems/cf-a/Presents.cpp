@@ -24,14 +24,22 @@ inline void fast_write(char *str);
 int comp_double(double a, double b);
 vector<string> string_split(char *str, char *delimiter);
 
-
+int n;
+int p[101];
+int r[101];
 
 void read() {
-
+    fs(n);
+    fsa(p, n);
 }
 
 void solve() {
-
+    REP(i, n) {
+        r[p[i]-1] = i+1;
+    }
+    REP(i, n) {
+        cout << r[i] << ' ';
+    }
 }
 
 int main() {

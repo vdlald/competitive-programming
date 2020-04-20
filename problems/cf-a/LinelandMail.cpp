@@ -24,14 +24,20 @@ inline void fast_write(char *str);
 int comp_double(double a, double b);
 vector<string> string_split(char *str, char *delimiter);
 
-
+int n;
+int xt[100000];
 
 void read() {
-
+    fs(n);
+    fsa(xt, n);
 }
 
 void solve() {
-
+    cout << xt[1] - xt[0] << ' ' << xt[n-1] - xt[0] << '\n';
+    for (int i = 1; i < n-1; ++i) {
+        cout << min(xt[i+1] - xt[i], xt[i] - xt[i-1]) << ' ' << max(xt[n-1] - xt[i], xt[i] - xt[0]) << '\n';
+    }
+    cout << xt[n-1] - xt[n-2] << ' ' << xt[n-1] - xt[0] << '\n';
 }
 
 int main() {

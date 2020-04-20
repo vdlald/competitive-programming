@@ -24,14 +24,27 @@ inline void fast_write(char *str);
 int comp_double(double a, double b);
 vector<string> string_split(char *str, char *delimiter);
 
-
+string s1, s2;
 
 void read() {
-
+    cin >> s1 >> s2;
 }
 
 void solve() {
-
+    if (s1.size() != s2.size()) {
+        if (s1.size() > s2.size()) {
+            cout << s1.size();
+        } else {
+            cout << s2.size();
+        }
+        return;
+    } else {
+        if (s1 == s2) {
+            cout << -1;
+        } else {
+            cout << s1.size();
+        }
+    }
 }
 
 int main() {

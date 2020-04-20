@@ -24,14 +24,44 @@ inline void fast_write(char *str);
 int comp_double(double a, double b);
 vector<string> string_split(char *str, char *delimiter);
 
-
+int n;
+int a[100001];
 
 void read() {
-
+    fs(n);
+    fsa(a, n);
 }
 
 void solve() {
-
+    sort(a, a+n);
+    int l = 1, m = 0;
+    int lv = a[0];
+    for (int i = 1; i < n; ++i) {
+        if (i + 1 == n) {
+            cout << 0;
+            return;
+        }
+        if (lv == a[i]) {
+            l++;
+        }
+        else {
+            break;
+        }
+    }
+    int mv = a[n-1];
+    for (int i = n-1; i >= 0; --i) {
+        if (a[i] == lv) {
+            cout << 0;
+            return;
+        }
+        if (mv == a[i]) {
+            m++;
+        }
+        else {
+            break;
+        }
+    }
+    cout << n - m - l;
 }
 
 int main() {

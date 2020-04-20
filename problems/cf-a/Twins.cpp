@@ -24,14 +24,31 @@ inline void fast_write(char *str);
 int comp_double(double a, double b);
 vector<string> string_split(char *str, char *delimiter);
 
-
+int n;
+int a[101];
 
 void read() {
-
+    fs(n);
+    fsa(a, n);
 }
 
 void solve() {
-
+    int r = 1;
+    sort(a, a+n);
+    int m = a[n-1];
+    n--;
+    int b = 0;
+    for (int i = 0; i < n; ++i) {
+        if (b > m || b + a[i] >= m) {
+            m += a[n-1];
+            n--;
+            r++;
+            i--;
+        } else {
+            b += a[i];
+        }
+    }
+    cout << r;
 }
 
 int main() {
