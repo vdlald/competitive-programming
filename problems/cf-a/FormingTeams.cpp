@@ -24,14 +24,72 @@ inline void fast_write(char *str);
 int comp_double(double a, double b);
 vector<string> string_split(char *str, char *delimiter);
 
-set<tri>
+int n, m;
+pair<int,int> e[101]{};
 
 void read() {
-
+    cin >> n >> m;
+    int t1, t2;
+    REP(i, m) {
+        cin >> t1 >> t2;
+        auto *p1 = &e[t1];
+        auto *p2 = &e[t2];
+        if (p1->first == 0) {
+            p1->first = t2;
+        } else {
+            p1->second = t2;
+        }
+        if (p2->first == 0) {
+            p2->first = t1;
+        } else {
+            p2->second = t1;
+        }
+    }
 }
 
 void solve() {
-
+    int r = 0;
+    vector<int> t1, t2;
+    t1.push_back(1);
+//    t2.push_back(e[1].first);
+    int m1, m2, m3;
+    for (int i = 2; i <= n; ++i) {
+        m1 = i;
+        m2 = e[i].first;
+        m3 = e[i].second;
+        if (m2 == 0 && m3 == 0) {
+            if (t1.size() > t2.size()) {
+                t2.push_back(m1);
+            } else {
+                t1.push_back(m1);
+            }
+        }
+        bool m1inT1 = find(t1.begin(), t1.end(), m1) != t1.end();
+        bool m1inT2 = find(t2.begin(), t2.end(), m1) != t2.end();
+        if (m1inT1 || m1inT2) {
+            continue;
+        }
+        bool m2inT1 = find(t1.begin(), t1.end(), m2) != t1.end();
+        bool m2inT2 = find(t2.begin(), t2.end(), m2) != t2.end();
+        bool m3inT1 = find(t1.begin(), t1.end(), m3) != t1.end();
+        bool m3inT2 = find(t2.begin(), t2.end(), m3) != t2.end();
+        if (m2inT1 && m3inT2 || m2inT2 && m3inT1) {
+            r++;
+            continue;
+        }
+        if (m2inT1 || m3inT1) {
+            t2.push_back(m1);
+        } else if (m2inT2 || m3inT2) {
+            t1.push_back(m1);
+        } else {
+            if (t1.size() > t2.size()) {
+                t2.push_back(m1);
+            } else {
+                t1.push_back(m1);
+            }
+        }
+    }
+    cout << (r + fabs(t1.size() - t2.size()));
 }
 
 int main() {
