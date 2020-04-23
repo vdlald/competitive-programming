@@ -25,71 +25,65 @@ int comp_double(double a, double b);
 vector<string> string_split(char *str, char *delimiter);
 
 int n, m;
-pair<int,int> e[101]{};
+int p[101][2];
+bool used[101];
+unsigned int ex = 0;
+
+void dfs(int c_node, int p_node, int &c) {
+    int *enemies = p[c_node];
+    if (used[c_node] || c_node == 0) return;
+    used[c_node] = true;
+    c++;
+    if (enemies[0] != p_node) {
+        if (used[enemies[0]] && enemies[1] == p_node) {
+            if (c & 1) {
+                ex++;
+            }
+        } else {
+            dfs(enemies[0], c_node, c);
+        }
+    }
+    if (enemies[1] != p_node) {
+        if (used[enemies[1]] && enemies[0] == p_node) {
+            if (c & 1) {
+                ex++;
+            }
+        } else {
+            dfs(enemies[1], c_node, c);
+        }
+    }
+}
 
 void read() {
-    cin >> n >> m;
+    fs(n);
+    fs(m);
     int t1, t2;
-    REP(i, m) {
-        cin >> t1 >> t2;
-        auto *p1 = &e[t1];
-        auto *p2 = &e[t2];
-        if (p1->first == 0) {
-            p1->first = t2;
+    for (int i = 0; i < m; ++i) {
+        fs(t1);
+        fs(t2);
+        if (p[t1][0] == 0) {
+            p[t1][0] = t2;
         } else {
-            p1->second = t2;
+            p[t1][1] = t2;
         }
-        if (p2->first == 0) {
-            p2->first = t1;
+        if (p[t2][0] == 0) {
+            p[t2][0] = t1;
         } else {
-            p2->second = t1;
+            p[t2][1] = t1;
         }
     }
 }
 
 void solve() {
-    int r = 0;
-    vector<int> t1, t2;
-    t1.push_back(1);
-//    t2.push_back(e[1].first);
-    int m1, m2, m3;
-    for (int i = 2; i <= n; ++i) {
-        m1 = i;
-        m2 = e[i].first;
-        m3 = e[i].second;
-        if (m2 == 0 && m3 == 0) {
-            if (t1.size() > t2.size()) {
-                t2.push_back(m1);
-            } else {
-                t1.push_back(m1);
-            }
-        }
-        bool m1inT1 = find(t1.begin(), t1.end(), m1) != t1.end();
-        bool m1inT2 = find(t2.begin(), t2.end(), m1) != t2.end();
-        if (m1inT1 || m1inT2) {
-            continue;
-        }
-        bool m2inT1 = find(t1.begin(), t1.end(), m2) != t1.end();
-        bool m2inT2 = find(t2.begin(), t2.end(), m2) != t2.end();
-        bool m3inT1 = find(t1.begin(), t1.end(), m3) != t1.end();
-        bool m3inT2 = find(t2.begin(), t2.end(), m3) != t2.end();
-        if (m2inT1 && m3inT2 || m2inT2 && m3inT1) {
-            r++;
-            continue;
-        }
-        if (m2inT1 || m3inT1) {
-            t2.push_back(m1);
-        } else if (m2inT2 || m3inT2) {
-            t1.push_back(m1);
-        } else {
-            if (t1.size() > t2.size()) {
-                t2.push_back(m1);
-            } else {
-                t1.push_back(m1);
-            }
-        }
+    for (int i = 1; i < n + 1; ++i) {
+        int c = 0;
+        dfs(i, 0, c);
     }
-    cout << (r + fabs(t1.size() - t2.size()));
+    if ((n - ex) & 1) {
+        cout << (ex+1);
+    } else {
+        cout << ex;
+    }
 }
 
 int main() {
